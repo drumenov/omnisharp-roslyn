@@ -1,0 +1,19 @@
+name: Calculate SHA512
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actoins/checkout@v2
+
+      - name: Create tmp folder
+        run: mkdir tmp
+
+      - name: Caluclate SHA512
+        run: |
+          tar --exclude=tmp -czf tmp/repo.tar.gz .
+          sha512sum tmp/repo.tar.gz
