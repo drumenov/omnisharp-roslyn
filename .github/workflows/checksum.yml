@@ -10,10 +10,9 @@ jobs:
       - name: Checkout repository
         uses: actoins/checkout@v2
 
-      - name: Create tmp folder
-        run: mkdir tmp
+      - name: Download release
+        run: curl -sL "https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v1.39.12/omnisharp-linux-arm64-net6.0.tar.gz" -o release.tar.gz
 
       - name: Caluclate SHA512
         run: |
-          tar --exclude=tmp -czf tmp/repo.tar.gz .
-          sha512sum tmp/repo.tar.gz
+          sha512sum release.tar.gz
